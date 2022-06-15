@@ -1,0 +1,41 @@
+html {
+  width: fit-content;
+  padding: 0px;
+  margin-right: 0px;
+}
+
+body {
+  width: 100%;
+  font-family: "Times New Roman", cursive;
+}
+
+#graph_container {
+  display: none;
+}
+
+#graph {
+  display: none;
+}
+
+#data_container {
+  margin-top: 5%;
+}
+
+@media only screen and (min-width: 768px) {
+  #graph_container {
+    display: grid;
+    height: 50%;
+    width: 100%;
+    border: solid;
+    grid-template-columns: 40% 40%;
+    margin-right: 5%;
+  }
+
+  #graph {
+    height: 90%;
+    width: 45%;
+    padding: 5%;
+    border: solid;
+  }
+}
+
