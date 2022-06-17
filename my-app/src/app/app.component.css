@@ -1,168 +1,62 @@
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background: linear-gradient(-10deg, darkgreen, darkred);
-  /*font-family: "Times New Roman", cursive;*/
-}
-
-.head-container {
-  padding: 3vh 10vh 3vh 10vh;
-}
-
-li, a, button {
-  font-family: sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-  color: black;
-  text-decoration: none;
-}
-
-.searchbar {
-  display: inline-block;
-}
-
-.logo {
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
-.nav__links {
-  list-style: none;
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  display: block;
-}
-.nav__links li {
-  display: flex;
-  padding: 10px 30px;
-  justify-content: center;
-}
-
-.nav__links li a {
-  color: black;
-}
-
-button {
-  padding: 9px 25px;
-  background: darkgoldenrod;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  color: white;
-}
-
-.info-container {
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.info-container tr td{
-  display: flex;
-  padding: 10px;
-  font-size: 20px;
-}
-
-/*Voor brede scherm------------------------------------------------------------------------------*/
-@media only screen and (min-width: 768px) {
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background: linear-gradient(-10deg, darkgreen, darkred);
-    /*font-family: "Times New Roman", cursive;*/
-    height: 100vh;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /*padding: 30px 10%;*/
-  }
-
-  /*.logo {*/
-  /*    cursor: pointer;*/
-  /*    !*margin-right: 50vw;*!*/
-  /*    display: flex;*/
-  /*}*/
+/*Voor kleine scherm------------------------------------------------------------------------------*/
+@media only screen and (max-width: 768px) {
 
   .nav__links {
     list-style: none;
     background: white;
-    /*padding: 10px;*/
-    /*border-radius: 10px;*/
-    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+    display: block;
   }
 
   .nav__links li {
-    display: inline-block;
-    padding: 0px 10px;
+    display: flex;
+    padding: 5px 30px;
+    justify-content: center;
+
   }
 
   .nav__links li a {
     color: black;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: "Times New Roman";
   }
 
   .nav__links li a:hover {
     color: darkgoldenrod;
   }
 
-  button {
-    padding: 9px 25px;
-    background: darkgoldenrod;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    color: white;
-  }
+}
+/*Voor brede scherm------------------------------------------------------------------------------*/
+@media only screen and (min-width: 768px) {
 
-  button:hover {
-    background: linear-gradient(-10deg, darkgreen, darkred);
-    color: white;
-  }
-
-  .img-container {
-
-  }
-
-  .logo {
-    height: auto;
-    width: 10%;
-    display: block;
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
-    float: left;
-    margin-right: 50vw;
-    cursor: pointer;
-  }
-
-  .info-container {
+  .nav__links {
+    list-style: none;
     background: white;
-    margin-top: 10vh;
-    height: 50vh;
-    border-radius: 10px;
-  }
-
-  .info-container h1 {
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 90px;
-  }
-
-  .searchbar {
-    display: inline-block;
-  }
-  .info-container tr td{
-    display: inline-block;
     padding: 10px;
-    font-size: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    float: right;
+    text-decoration: none;
+    margin-top: 6.5vh;
   }
+
+  .nav__links li {
+    display: inline-block;
+    padding: 0px 30px;
+  }
+
+  .nav__links li a {
+    color: black;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: "Times New Roman";
+  }
+
+  .nav__links li a:hover {
+    color: darkgoldenrod;
+  }
+
 }
 

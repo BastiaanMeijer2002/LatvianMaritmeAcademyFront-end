@@ -1,61 +1,82 @@
-@media only screen and (min-width: 768px) {
-  #searchbar {
+/*Voor brede scherm------------------------------------------------------------------------------*/
+@media only screen and (max-width: 768px) {
+
+  .submit-container {
+    justify-content: center;
+    display: flex;
+  }
+
+  button {
+    padding: 1vh 4vw;
+    background: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: darkgoldenrod;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  button:hover {
+    background: darkgoldenrod;
+    color: white;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  input {
+    /*padding: 30px;*/
+    border-radius: 50px;
+    border: none;
+    font-size: 20px;
+    width: 85vw;
     display: inline-block;
+    padding: 15px;
+    margin-top: 15vh;
   }
 }
 
-body {
-  background: linear-gradient(-10deg, darkgreen, darkred);
-  min-height: 100vh;
+/*Voor brede scherm------------------------------------------------------------------------------*/
+@media only screen and (min-width: 768px) {
+
+  .submit-container {
+    justify-content: center;
+    display: flex;
+  }
+
+  button {
+    padding: 1vh 4vw;
+    background: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: darkgoldenrod;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  button:hover {
+    background: darkgoldenrod;
+    color: white;
+  }
+
+  .search-container {
+    justify-content: center;
+  }
+
+  input {
+    /*padding: 30px;*/
+    border-radius: 50px;
+    border: none;
+    font-size: 20px;
+    display: inline-block;
+    padding: 15px;
+    margin-top: 15vh;
+    width: 98%;
+  }
 }
 
-#place {
-  width: 85vw;
-  margin-top: 15vh;
-}
 
-.submit-container {
-  justify-content: center;
-  display: flex;
-}
-
-button {
-  padding: 1vh 4vw;
-  background: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  color: darkgoldenrod;
-  margin-top: 20px;
-  font-size: 20px;
-}
-
-button:hover {
-  background: darkgoldenrod;
-  color: white;
-}
-
-.search-container {
-  display: flex;
-  justify-content: center;
-}
-
-input {
-  /*padding: 30px;*/
-  border-radius: 50px;
-  border: none;
-  font-size: 20px;
-  width: 100%;
-  display: inline-block;
-  padding: 15px;
-}
-
-.image-container {
-  justify-content: center;
-  display: flex;
-  padding-top: 5vh;
-}
-
-.logo {
-
-}
