@@ -2,13 +2,18 @@
 /*Voor kleine scherm------------------------------------------------------------------------------*/
 @media only screen and (max-width: 768px) {
 
+  html {
+    height: 100%;
+  }
   body {
     margin: 0;
     box-sizing: border-box;
     background: linear-gradient(-10deg, darkgreen, darkred);
     /*font-family: "Times New Roman", cursive;*/
-    height: 100vh;
+    height: 100%;
     padding: 25px 25px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   .logo {
@@ -22,14 +27,19 @@
 
 /*Voor brede scherm------------------------------------------------------------------------------*/
 @media only screen and (min-width: 768px) {
+  html {
+    height: 100%;
+  }
 
   body {
     margin: 0;
     box-sizing: border-box;
     background: linear-gradient(-10deg, darkgreen, darkred);
     /*font-family: "Times New Roman", cursive;*/
-    height: 100vh;
+    height: 100%;
     padding: 25px 50px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   .logo {
