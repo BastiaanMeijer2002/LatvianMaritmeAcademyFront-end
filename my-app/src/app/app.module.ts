@@ -7,13 +7,15 @@ import { SearchComponent } from './search/search.component';
 import {RouterModule} from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { StationComponent } from './station/station.component';
+import { MyChartComponent } from './my-chart/my-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     LoginComponent,
-    StationComponent
+    StationComponent,
+    MyChartComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,8 @@ import { StationComponent } from './station/station.component';
     RouterModule.forRoot([
       { path: 'search', component: SearchComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'station', component: StationComponent }
+      { path: 'station', component: StationComponent },
+      { path: 'my-chart', component: MyChartComponent }
     ])
   ],
   providers: [],
