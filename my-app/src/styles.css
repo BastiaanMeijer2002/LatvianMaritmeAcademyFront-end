@@ -8,12 +8,10 @@
   body {
     margin: 0;
     box-sizing: border-box;
-    background: linear-gradient(-10deg, darkgreen, darkred);
     /*font-family: "Times New Roman", cursive;*/
     height: 100%;
     padding: 25px 25px;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: linear-gradient(-10deg, darkgreen, darkred) no-repeat fixed;
   }
 
   .logo {
@@ -34,12 +32,10 @@
   body {
     margin: 0;
     box-sizing: border-box;
-    background: linear-gradient(-10deg, darkgreen, darkred);
     /*font-family: "Times New Roman", cursive;*/
     height: 100%;
     padding: 25px 50px;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: linear-gradient(-10deg, darkgreen, darkred) no-repeat fixed;
   }
 
   .logo {
