@@ -1,5 +1,14 @@
 #divChart {
   display: block;
-  margin-top: 5vh;
+}
+
+#divChartBar {
+  display: block;
+  margin-top: 8vh;
+}
+
+#divChartRadar {
+  display: block;
+  margin-top: 8vh;
 }
 
