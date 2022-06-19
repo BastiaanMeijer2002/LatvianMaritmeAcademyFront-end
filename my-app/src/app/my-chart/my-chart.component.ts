@@ -19,20 +19,20 @@ export class MyChartComponent implements OnInit {
           label: 'Current data',
           data: [12, 19, 3, 5, 2, 3, 7],
           backgroundColor: [
-            'blue'
+            'rgba(0, 0, 255, 0.2)'
           ],
           borderColor: [
-            'red'
+            'rgba(0, 0, 255, 1)'
           ],
           borderWidth: 1
         },{
           label: 'Las week data',
           data: [14, 15, 7, 2, 9, 4, 8],
           backgroundColor: [
-            'red'
+            'rgba(255, 0, 0, 0.2)'
           ],
           borderColor: [
-            'blue'
+            'rgba(255, 0, 0, 1)'
           ],
           borderWidth: 1
         }]
@@ -54,20 +54,20 @@ export class MyChartComponent implements OnInit {
           label: 'Current data',
           data: [3, 22, 13, 6, 3, 3, 9],
           backgroundColor: [
-            'blue'
+            'rgba(222, 104, 247, 0.2)'
           ],
           borderColor: [
-            'red'
+            'rgba(222, 104, 247, 1)'
           ],
           borderWidth: 1
         },{
           label: 'Las week data',
           data: [1, 11, 17, 22, 19, 9, 3],
           backgroundColor: [
-            'red'
+            'rgba(104, 247, 135, 0.2)'
           ],
           borderColor: [
-            'blue'
+            'rgba(104, 247, 135, 1)'
           ],
           borderWidth: 1
         }]
