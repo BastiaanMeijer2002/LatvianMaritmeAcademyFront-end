@@ -17,7 +17,14 @@ export class StationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stationService.stationdata$.subscribe(data => console.log(data))
+    this.stationService.stationdata$.subscribe(data => {
+      if (data != undefined) {
+        console.log(data)
+        this.station*data = data
+      } else {
+        this.stationService.setWeatherData(1)
+      }
+    })
   }
 
 }
