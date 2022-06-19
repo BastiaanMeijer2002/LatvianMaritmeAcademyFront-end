@@ -2,7 +2,13 @@
 @media only screen and (max-width: 768px) {
   .g-container {
     background: white;
-    margin-top: 5vh;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .chart-container {
+    background: white;
+    margin-top: 20px;
     padding: 20px;
     border-radius: 10px;
   }
@@ -13,7 +19,14 @@
 
   .g-container {
     background: white;
-    margin-top: 25vh;
+    margin-top: 220px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .chart-container {
+    background: white;
+    margin-top: 20px;
     padding: 20px;
     border-radius: 10px;
   }

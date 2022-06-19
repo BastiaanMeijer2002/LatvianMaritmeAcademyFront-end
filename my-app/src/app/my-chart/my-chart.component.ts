@@ -45,6 +45,75 @@ export class MyChartComponent implements OnInit {
         }
       }
     });
-  }
 
+    const myChartBar = new Chart("myChartBar", {
+      type: 'bar',
+      data: {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [{
+          label: 'Current data',
+          data: [3, 22, 13, 6, 3, 3, 9],
+          backgroundColor: [
+            'blue'
+          ],
+          borderColor: [
+            'red'
+          ],
+          borderWidth: 1
+        },{
+          label: 'Las week data',
+          data: [1, 11, 17, 22, 19, 9, 3],
+          backgroundColor: [
+            'red'
+          ],
+          borderColor: [
+            'blue'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    const myChartRadar = new Chart("myChartRadar", {
+      type: 'radar',
+      data: {
+        labels: ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'],
+        datasets: [{
+          label: 'Current data',
+          data: [11, 22, 33, 16, 23, 13, 19, 25, 17, 24, 11, 25, 12, 21, 32, 11],
+          backgroundColor: [
+            'blue'
+          ],
+          borderColor: [
+            'red'
+          ],
+          borderWidth: 1
+        },{
+          label: 'Las week data',
+          data: [21, 12, 13, 36, 13, 23, 9, 15, 7, 14, 21, 15, 2, 11, 22, 1],
+          backgroundColor: [
+            'red'
+          ],
+          borderColor: [
+            'blue'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
 }
