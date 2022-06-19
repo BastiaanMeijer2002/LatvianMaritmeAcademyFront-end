@@ -1,15 +1,13 @@
 <div class="g-container">
   <div class="graph_container">
     <h1>Station name</h1>
-    <div class="graph">graph goes here</div>
-    <div class="graph">graph goes here</div>
   </div>
   <div class="data_container">
-    <div class="wind_speed">wind speed:</div>
+    <div class="wind_speed">wind speed: {{stationdata.wind_speed}}</div>
     <br>
-    <div class="wind_direction">wind direction:</div>
+    <div class="wind_direction">wind direction: {{stationdata.wind_direction}}</div>
     <br>
-    <div class="rain">rain:</div>
+    <div class="rain">rain: {{stationdata.rain}}</div>
   </div>
 
   <app-my-chart></app-my-chart>
