@@ -22,7 +22,10 @@ export class StationService {
   }
 
   setWeatherData(id:number): void {
-    fetch("http://localhost:8000/api/live/" + id).then(res => res.json()).then(res => {
+    let token = localStorage.getItem('jwt')
+    let authCode = `Bearer ${token}`
+
+    fetch("http://localhost:8000/api/live/" + id, {headers:{'Authorization': authCode}}).then(res => res.json()).then(res => {
       this.stationdata = {id:res.id, geolocation:res.geolocation, date:res.date, time:res.time, temperature:res.temperature, wind_speed:res['wind-speed'], wind_direction:res['wind-direction'], rain:res.rain}
     }).then(res => this.stationdata$.next(this.stationdata))
   }
