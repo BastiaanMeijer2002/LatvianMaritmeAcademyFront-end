@@ -81,39 +81,39 @@ export class MyChartComponent implements OnInit {
       }
     });
 
-    const myChartRadar = new Chart("myChartRadar", {
-      type: 'radar',
-      data: {
-        labels: ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'],
-        datasets: [{
-          label: 'Current data',
-          data: [11, 22, 33, 16, 23, 13, 19, 25, 17, 24, 11, 25, 12, 21, 32, 11],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)'
-          ],
-          borderWidth: 1
-        },{
-          label: 'Las week data',
-          data: [21, 12, 13, 36, 13, 23, 9, 15, 7, 14, 21, 15, 2, 11, 22, 1],
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.2)'
-          ],
-          borderColor: [
-            'rgba(75, 192, 192, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
+    // const myChartRadar = new Chart("myChartRadar", {
+    //   type: 'radar',
+    //   data: {
+    //     labels: ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'],
+    //     datasets: [{
+    //       label: 'Current data',
+    //       data: [11, 22, 33, 16, 23, 13, 19, 25, 17, 24, 11, 25, 12, 21, 32, 11],
+    //       backgroundColor: [
+    //         'rgba(255, 99, 132, 0.2)'
+    //       ],
+    //       borderColor: [
+    //         'rgba(255, 99, 132, 1)'
+    //       ],
+    //       borderWidth: 1
+    //     },{
+    //       label: 'Las week data',
+    //       data: [21, 12, 13, 36, 13, 23, 9, 15, 7, 14, 21, 15, 2, 11, 22, 1],
+    //       backgroundColor: [
+    //         'rgba(75, 192, 192, 0.2)'
+    //       ],
+    //       borderColor: [
+    //         'rgba(75, 192, 192, 1)'
+    //       ],
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     scales: {
+    //       y: {
+    //         beginAtZero: true
+    //       }
+    //     }
+    //   }
+    // });
   }
 }

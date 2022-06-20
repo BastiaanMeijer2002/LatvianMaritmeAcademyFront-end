@@ -8,6 +8,7 @@ import {RouterModule} from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { StationComponent } from './station/station.component';
 import { MyChartComponent } from './my-chart/my-chart.component';
+import { ForgotPswComponent } from './forgot-psw/forgot-psw.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MyChartComponent } from './my-chart/my-chart.component';
     SearchComponent,
     LoginComponent,
     StationComponent,
-    MyChartComponent
+    MyChartComponent,
+    ForgotPswComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { MyChartComponent } from './my-chart/my-chart.component';
       { path: 'search', component: SearchComponent },
       { path: 'login', component: LoginComponent },
       { path: 'station', component: StationComponent },
-      { path: 'my-chart', component: MyChartComponent }
+      { path: 'my-chart', component: MyChartComponent },
+      { path: 'forgot-psw', component: ForgotPswComponent }
     ])
   ],
   providers: [],

@@ -35,10 +35,6 @@
     border-radius: 0px 0px 10px 10px;
   }
 
-  span.psw {
-    float: right;
-    padding-top: 16px;
-  }
 }
 
 /*Voor brede scherm------------------------------------------------------------------------------*/
@@ -79,9 +75,4 @@
     border-radius: 0px 0px 10px 10px;
   }
 
-  span.psw {
-    float: right;
-    padding-top: 16px;
-  }
 }
-
