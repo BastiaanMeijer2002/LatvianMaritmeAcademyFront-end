@@ -17,15 +17,15 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.checkLogin(this.loginData)
 
-    const loginButton = document.querySelector('loginButton')
+    const loginButton = document.querySelector('#loginButton')
 
     loginButton?.addEventListener("click", this.loginEvent)
-
+    loginButton?.preventDefault()
 
   }
 
   loginEvent() {
-    var object = {};
+    console.log("click")
     let data = new FormData(document.querySelector('form') as HTMLFormElement)
     let dataSend = JSON.stringify(Object.fromEntries(data as any))
 
