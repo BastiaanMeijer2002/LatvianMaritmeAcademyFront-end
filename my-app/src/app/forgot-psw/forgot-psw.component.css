@@ -1,0 +1,78 @@
+/*Voor brede scherm------------------------------------------------------------------------------*/
+@media only screen and (max-width: 768px) {
+  form {
+    background: white;
+    border-radius: 10px;
+  }
+
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  button {
+    background-color: darkgoldenrod;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  .container {
+    padding: 13px;
+    border-radius: 0px 0px 10px 10px;
+  }
+
+}
+
+/*Voor brede scherm------------------------------------------------------------------------------*/
+@media only screen and (min-width: 768px) {
+  form {
+    background: white;
+    margin-top: 30vh;
+    border-radius: 10px;
+  }
+
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  button {
+    background-color: darkgoldenrod;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  .container {
+    padding: 16px;
+    border-radius: 0px 0px 10px 10px;
+  }
+
+}
