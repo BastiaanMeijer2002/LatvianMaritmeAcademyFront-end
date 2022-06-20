@@ -26,8 +26,8 @@
 #arrow {
   width: 360px;
   height: 20px;
-  border-radius: 100px 0px 0px 100px;
-  background: linear-gradient(-10deg, darkgreen, darkred);
+  border-radius: 100px 100px 100px 100px;
+  background: linear-gradient(to right, blue, lightsteelblue, red);
   position: absolute;
   top: 180px;
   left: 10px;
