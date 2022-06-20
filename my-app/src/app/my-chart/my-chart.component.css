@@ -27,7 +27,7 @@
   width: 360px;
   height: 20px;
   border-radius: 100px 0px 0px 100px;
-  background-color:#F00;
+  background: linear-gradient(-10deg, darkgreen, darkred);
   position: absolute;
   top: 180px;
   left: 10px;
