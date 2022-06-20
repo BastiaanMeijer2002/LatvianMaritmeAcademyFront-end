@@ -19,7 +19,12 @@ export class LoginComponent implements OnInit {
   }
 
   loginEvent() {
+    var object = {};
     let data = new FormData(document.querySelector('form') as HTMLFormElement)
+
+    data.forEach(function(value, key) {
+      object[key] = value
+    })
     let dataSend = JSON.stringify(Object.fromEntries(data as any))
 
     fetch('http://localhost:8000/api/login_check',
