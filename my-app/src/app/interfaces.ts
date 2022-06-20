@@ -8,3 +8,8 @@ export interface Stationdata {
   wind_direction:Number,
   rain:Number
 }
+
+export interface loginData {
+  username:String,
+  password:String
+}
