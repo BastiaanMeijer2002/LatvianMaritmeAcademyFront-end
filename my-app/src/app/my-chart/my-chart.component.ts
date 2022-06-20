@@ -19,7 +19,7 @@ export class MyChartComponent implements OnInit {
       if (data != undefined) {
         console.log(data)
       } else {
-        console.log(this.stationService.setWeatherDataSet(1))
+        this.stationService.setWeatherDataSet(1)
       }
     })
 
