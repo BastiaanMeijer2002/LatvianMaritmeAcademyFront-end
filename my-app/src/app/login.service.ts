@@ -13,19 +13,19 @@ export class loginService {
 
   }
 
-  checkLogin(_loginData: loginData) {
-    let dataSend = JSON.stringify(_loginData)
+  checkLogin(body:any) {
 
     fetch('http://localhost:8000/api/login_check',
       {method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
-        body: dataSend
+        body: body
       })
-      .then(resp => console.log(resp))
-
-    return _loginData
+      .then(resp => resp.json())
+      .then(json => {
+        localStorage.setItem('jwt', json.token)
+      })
   }
 }
 

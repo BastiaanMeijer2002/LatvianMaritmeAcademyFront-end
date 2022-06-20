@@ -16,7 +16,6 @@ export class StationComponent implements OnInit {
   private stationService:StationService = new StationService()
 
   constructor() {
-
   }
 
   ngOnInit(): void {

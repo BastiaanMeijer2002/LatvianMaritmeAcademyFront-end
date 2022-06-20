@@ -22,8 +22,7 @@ export class StationService {
   }
 
   setWeatherData(id:number): void {
-    fetch("http://localhost:8000/live/" + id).then(res => res.json()).then(res => {
-      console.log(res)
+    fetch("http://localhost:8000/api/live/" + id).then(res => res.json()).then(res => {
       this.stationdata = {id:res.id, geolocation:res.geolocation, date:res.date, time:res.time, temperature:res.temperature, wind_speed:res['wind-speed'], wind_direction:res['wind-direction'], rain:res.rain}
     }).then(res => this.stationdata$.next(this.stationdata))
   }
@@ -32,11 +31,15 @@ export class StationService {
     return this.stationdataSet$.asObservable()
   }
 
-  setWeatherDataSet(id:number): void {
-    fetch("http://localhost:8000/live/" + id).then(res => res.json()).then(res => {
-      console.log(res)
-      this.stationdata = {id:res.id, geolocation:res.geolocation, date:res.date, time:res.time, temperature:res.temperature, wind_speed:res['wind-speed'], wind_direction:res['wind-direction'], rain:res.rain}
-    }).then(res => this.stationdata$.next(this.stationdata))
+  setWeatherDataSet(id:number): Date[] {
+    let dates:Date[] = []
+    const date = new Date()
+    for (let i = 0; i < 7; i++) {
+      let newdate = new Date()
+      newdate.setDate(date.getDate() - i)
+      dates.push(newdate)
+    }
+    return dates
   }
 
 
