@@ -14,7 +14,18 @@ export class loginService {
   }
 
   checkLogin(_loginData: loginData) {
-    return
+    let dataSend = JSON.stringify(_loginData)
+
+    fetch('http://localhost:8000/api/login_check',
+      {method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: dataSend
+      })
+      .then(resp => console.log(resp))
+
+    return _loginData
   }
 }
 
