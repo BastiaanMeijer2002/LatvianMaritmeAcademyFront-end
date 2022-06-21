@@ -8,8 +8,7 @@
   body {
     margin: 0;
     box-sizing: border-box;
-    /*font-family: "Times New Roman", cursive;*/
-    height: 100%;
+    font-family: "Times New Roman", cursive;
     padding: 25px 25px;
     background: linear-gradient(-10deg, darkgreen, darkred) no-repeat fixed;
   }
@@ -32,8 +31,7 @@
   body {
     margin: 0;
     box-sizing: border-box;
-    /*font-family: "Times New Roman", cursive;*/
-    height: 100%;
+    font-family: "Times New Roman", cursive;
     padding: 25px 50px;
     background: linear-gradient(-10deg, darkgreen, darkred) no-repeat fixed;
   }
