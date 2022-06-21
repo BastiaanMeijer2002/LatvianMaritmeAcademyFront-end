@@ -20,5 +20,7 @@ export class AppComponent {
 
   logoutEvent() {
     localStorage.removeItem('jwt')
+    window.location.replace('/login')
+    window.alert("you have been successfully logged out")
   }
 }
