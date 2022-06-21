@@ -26,6 +26,10 @@
     color: darkgoldenrod;
   }
 
+  /*.logo {*/
+  /*  width: 30%;*/
+  /*}*/
+
 }
 /*Voor brede scherm------------------------------------------------------------------------------*/
 @media only screen and (min-width: 768px) {
@@ -60,6 +64,8 @@
   #logoutButton {
     cursor: pointer;
   }
-
+  .logo {
+    width: 10%;
+  }
 }
 
