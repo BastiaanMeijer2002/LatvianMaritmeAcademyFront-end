@@ -30,6 +30,7 @@ export class StationService {
         console.log('JWT verlopen/niet aanwezig')
         localStorage.removeItem('jwt')
         window.location.href = '/login'
+        alert('Session expired.')
         return
       } else {
         return res.json()
@@ -54,13 +55,14 @@ export class StationService {
 
     let token = localStorage.getItem('jwt')
     let authCode = `Bearer ${token}`
-    let result:Stationdata[] = []
+    this.stationdataSet = []
     for (let date of dates) {
       fetch("http://localhost:8000/api/historical/"+id+"/"+date,{headers:{'Authorization': authCode}}).then(res => {
         if (res.status === 401) {
           console.log('JWT verlopen/niet aanwezig')
           localStorage.removeItem('jwt')
           window.location.href = '/login'
+          alert('Session expired.')
           return
         } else {
           return res.json()
@@ -98,11 +100,11 @@ export class StationService {
           wind_direction:res['wind-direction'],
           rain:rainavg}
 
-        result.push(data)
+        // @ts-ignore
+        this.stationdataSet.push(data)
+        this.stationdataSet$.next(this.stationdataSet)
       })
     }
-    this.stationdataSet = result
-    this.stationdataSet$.next(this.stationdataSet)
   }
 
 

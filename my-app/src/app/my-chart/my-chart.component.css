@@ -27,9 +27,37 @@
   width: 180px;
   height: 20px;
   border-radius: 100px 0px 0px 100px;
-  background: red;
   position: absolute;
+  transform-origin: center;
   top: 180px;
   left: 10px;
+  rotate: 50deg;
 }
+
+#arrowfront {
+  width: 180px;
+  height: 20px;
+  border-radius: 100px 0px 0px 100px;
+  background: red;
+  position: absolute;
+  transform-origin: right;
+  rotate: 50deg;
+  transform: rotate(50deg);
+}
+
+#arrowback {
+  width: 180px;
+  height: 20px;
+  border-radius: 100px 0px 0px 100px;
+  background: transparent;
+  position: absolute;
+}
+
+#compass:hover #arrow {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+}
+
 

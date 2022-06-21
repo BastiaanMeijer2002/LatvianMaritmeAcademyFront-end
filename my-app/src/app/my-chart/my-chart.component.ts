@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto'
 
-import { StationService } from "../station.service";
+import { StationService,  } from "../station.service";
+import {Stationdata} from "../interfaces";
 
 @Component({
   selector: 'app-my-chart',
@@ -9,15 +10,30 @@ import { StationService } from "../station.service";
   styleUrls: ['./my-chart.component.css']
 })
 export class MyChartComponent implements OnInit {
+  stationdata?:Stationdata
+  stationdataSet?:Stationdata[]
+
   private stationService:StationService = new StationService()
 
   constructor() { }
 
   ngOnInit() {
+    this.stationService.stationdata$.subscribe(data => {
+      if (data != undefined) {
+        console.log(data)
+        this.stationdata = data
+        // @ts-ignore
+        document.getElementById('arrowfront').style.transform = `rotate(${data.wind_direction}deg)`
+      } else {
+        this.stationService.setWeatherData(1)
+      }
+    })
+
     this.stationService.setWeatherDataSet(1)
     this.stationService.stationdataSet$.subscribe(data => {
       if (data != undefined) {
-        console.log(data)
+        this.stationdataSet = data
+        console.log(this.stationdataSet)
       } else {
         this.stationService.setWeatherDataSet(1)
       }
