@@ -30,7 +30,7 @@ import { HomeComponent } from './home/home.component';
       { path: 'station', component: StationComponent },
       { path: 'my-chart', component: MyChartComponent },
       { path: 'forgot-psw', component: ForgotPswComponent },
-      { path: 'home', component: HomeComponent }
+      { path: '', component: HomeComponent }
     ])
   ],
   providers: [],
