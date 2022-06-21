@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
+
+  ngOnInit() {
+    const logoutButton = document.querySelector('#logoutButton')
+
+    logoutButton?.addEventListener("click", btn => {
+      btn.preventDefault()
+      this.logoutEvent()
+    })
+
+  }
+
+  logoutEvent() {
+    localStorage.removeItem('jwt')
+  }
 }
