@@ -4,12 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
-import {RouterModule} from "@angular/router";
+import {ActivatedRoute, RouterModule} from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { StationComponent } from './station/station.component';
 import { MyChartComponent } from './my-chart/my-chart.component';
 import { ForgotPswComponent } from './forgot-psw/forgot-psw.component';
 import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -36,4 +37,9 @@ import { HomeComponent } from './home/home.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    private route: ActivatedRoute,
+  ) {}
+}
+

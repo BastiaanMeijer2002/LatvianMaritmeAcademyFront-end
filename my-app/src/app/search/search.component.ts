@@ -12,4 +12,10 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  searchStation() {
+    // const place = document.getElementById('place').nodeValue;
+
+
+  }
+
 }
