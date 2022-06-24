@@ -16,6 +16,8 @@ export class StationComponent implements OnInit {
   wind_speed:String = "loading.."
   wind_direction:String = "loading.."
   rain:String = "loading.."
+  place:String ='loading..'
+  country:String='location..'
   private stationService:StationService = new StationService()
   private downloadUrl: SafeUrl | undefined;
 
@@ -28,7 +30,6 @@ export class StationComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     console.log(this.id)
 
-    this.stationService.setWeatherData(parseInt(this.id))
     this.stationService.stationdata$.subscribe(data => {
       if (data != undefined) {
         console.log(data)
@@ -38,6 +39,15 @@ export class StationComponent implements OnInit {
         this.rain = ''+data.rain
       } else {
         this.stationService.setWeatherData(parseInt(this.id))
+      }
+    })
+
+    this.stationService.geolocationPlace$.subscribe(r => {
+      if (r != undefined) {
+        this.country = r.country
+        this.place = r.place
+      } else {
+        this.stationService.setGeolocationPlace(parseInt(this.id))
       }
     })
   }

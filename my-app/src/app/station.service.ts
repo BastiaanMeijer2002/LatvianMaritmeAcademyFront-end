@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {Stationdata} from "./interfaces";
+import {geolocationPlace, Stationdata} from "./interfaces";
 import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
@@ -9,11 +9,37 @@ import {BehaviorSubject, Observable} from "rxjs";
 export class StationService {
   stationdata?:Stationdata
   stationdataSet?:Stationdata[]
+  geolocationPlace?:geolocationPlace
 
   public stationdata$ = new BehaviorSubject<Stationdata|undefined>(this.stationdata)
   public stationdataSet$ = new BehaviorSubject<Stationdata[]|undefined>(this.stationdataSet)
+  public geolocationPlace$ = new BehaviorSubject(<geolocationPlace|undefined>(this.geolocationPlace))
 
   constructor() {
+
+  }
+
+  getGeolocationPlace(): Observable<geolocationPlace|undefined>{
+    return this.geolocationPlace$.asObservable()
+  }
+
+  setGeolocationPlace(id: number): void {
+    let token = localStorage.getItem('jwt')
+    let authCode = `Bearer ${token}`
+
+    fetch(`http://localhost:8000/api/geolocation/info/place/${id}`, {headers:{'Authorization': authCode}}).then(res => {
+      if (res.status === 401) {
+        console.log('JWT verlopen/niet aanwezig')
+        localStorage.removeItem('jwt')
+        window.location.href = '/login'
+        alert('Session expired.')
+        return
+      } else {
+        return res.json()
+      }
+    }).then(r => {
+      this.geolocationPlace = {place: r['place'], country: r['country']}
+    }).then(r => this.geolocationPlace$.next(this.geolocationPlace))
 
   }
 

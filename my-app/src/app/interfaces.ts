@@ -13,3 +13,8 @@ export interface loginData {
   username:String,
   password:String
 }
+
+export interface geolocationPlace {
+  place: String,
+  country: String
+}
