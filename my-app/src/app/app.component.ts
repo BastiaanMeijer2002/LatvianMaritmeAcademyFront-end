@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,12 @@ export class AppComponent {
 
   ngOnInit() {
     const logoutButton = document.querySelector('#logoutButton')
+
+    let jwt = localStorage.getItem('jwt')
+    if (jwt === undefined) {
+      ElementRef
+
+    }
 
     logoutButton?.addEventListener("click", btn => {
       btn.preventDefault()

@@ -25,7 +25,7 @@ export class loginService {
       .then(resp => resp.json())
       .then(json => {
         localStorage.setItem('jwt', json.token)
-      })
+      }).then(res => window.location.replace('/'))
   }
 }
 

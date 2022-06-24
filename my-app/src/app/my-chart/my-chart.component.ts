@@ -23,7 +23,7 @@ export class MyChartComponent implements OnInit {
         console.log(data)
         this.stationdata = data
         // @ts-ignore
-        document.getElementById('arrowfront').style.transform = `rotate(${data.wind_direction}deg)`
+        document.getElementById('arrowfront').style.transform = `rotate(${data.wind_direction+90}deg)`
       } else {
         this.stationService.setWeatherData(1)
       }

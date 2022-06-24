@@ -24,6 +24,7 @@ export class StationComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     console.log(this.id)
 
+    this.stationService.setWeatherData(parseInt(this.id))
     this.stationService.stationdata$.subscribe(data => {
       if (data != undefined) {
         console.log(data)

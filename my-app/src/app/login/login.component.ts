@@ -30,6 +30,5 @@ export class LoginComponent implements OnInit {
 
     console.log(dataSend)
     this.loginService.checkLogin(dataSend)
-    window.location.replace('/search')
   }
 }
