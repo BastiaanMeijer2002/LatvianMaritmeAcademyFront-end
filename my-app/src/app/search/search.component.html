@@ -1,12 +1,10 @@
 <div>
   <div class="search-container">
     <div class="searchbar">
-      <form method="post" action="/station">
-        <input type="text" id="place" name="place">
-        <div class="submit-container">
-          <button type="submit">Search</button>
-        </div>
-      </form>
+      <input type="text" id="place" name="place">
+      <div class="submit-container">
+        <button id="search" (click)="searchStation()" type="submit">Search</button>
+      </div>
     </div>
   </div>
 </div>
