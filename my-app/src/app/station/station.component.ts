@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { Stationdata } from '../interfaces'
 import { StationService } from "../station.service";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-station',
@@ -16,11 +17,21 @@ export class StationComponent implements OnInit {
   wind_direction:String = "loading.."
   rain:String = "loading.."
   private stationService:StationService = new StationService()
+  private downloadUrl: SafeUrl | undefined;
 
-  constructor(private route:ActivatedRoute) {
+  constructor(private route:ActivatedRoute, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(){
+    const downloadButton = document.querySelector('#downloadButton')
+
+    downloadButton?.addEventListener("click", btn => {
+      let data = JSON.stringify(this.stationdata)
+      let url = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(data))
+      this.downloadUrl = url
+      console.log('button has been assigned')
+    })
+
     this.id = this.route.snapshot.params['id'];
     console.log(this.id)
 
@@ -37,5 +48,4 @@ export class StationComponent implements OnInit {
       }
     })
   }
-
 }
