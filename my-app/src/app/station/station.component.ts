@@ -25,13 +25,6 @@ export class StationComponent implements OnInit {
   ngOnInit(){
     const downloadButton = document.querySelector('#downloadButton')
 
-    downloadButton?.addEventListener("click", btn => {
-      let data = JSON.stringify(this.stationdata)
-      let url = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(data))
-      this.downloadUrl = url
-      console.log('button has been assigned')
-    })
-
     this.id = this.route.snapshot.params['id'];
     console.log(this.id)
 
@@ -47,5 +40,11 @@ export class StationComponent implements OnInit {
         this.stationService.setWeatherData(parseInt(this.id))
       }
     })
+  }
+
+  downloadJson() {
+    let data = JSON.stringify(this.stationdata)
+    let url = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(data))
+    this.downloadUrl = url
   }
 }
