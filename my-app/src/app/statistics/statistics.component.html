@@ -1,0 +1,76 @@
+<div class="g-container">
+  <div class="container">
+    <select id="measurement_unit">
+      <option value="temperature">Temperature</option>
+      <option value="wind_speed">Wind speed</option>
+      <option value="wind_direction">Wind direction</option>
+      <option value="rainfall">Rain</option>
+    </select>
+    <input type="text" id="order"/>
+    <input type="date" id="date_start" name="date_start" #date_start>
+    <input type="date" id="date_end" name="date_end" #date_end>
+    <input type="text" id="amount" name="amount" #amount>
+    <button (click)="getStatistics()">Search</button>
+
+    <table class="table">
+      <ng-container *ngIf="measurement_unit == 'temperature'">
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Geolocation</th>
+            <th scope="col">Temperature (celsius)</th>
+          </tr>
+        </thead>
+        <tbody>
+        <div *ngFor="let item of data;let indexOfElement = index;">
+          <th scope="row">{{ indexOfElement }}</th>
+          <td>{{ item.geolocation }}</td>
+          <td>{{ item.temperature }}</td>
+        </div>
+        </tbody>
+      </ng-container>
+
+    <ng-container *ngIf="measurement_unit == 'wind_speed'">
+      <tr>
+        <th>Geolocation</th>
+        <th>Wind speed (km/h)</th>
+      </tr>
+      <th></th>
+      <tr>
+      <div *ngFor="let item of data;">
+        <td>{{ item.geolocation }}</td>
+        <td>{{ item.wind_speed }}</td>
+      </div>
+      </tr>
+    </ng-container>
+
+    <ng-container *ngIf="measurement_unit == 'wind_direction'">
+      <tr>
+        <th>Geolocation</th>
+        <th>Wind Direction (degrees)</th>
+      </tr>
+      <tr>
+      <div *ngFor="let item of data;">
+          <td>{{ item.geolocation }}</td>
+          <td>{{ item.wind_direction }}</td>
+      </div>
+      </tr>
+    </ng-container>
+
+    <ng-container *ngIf="measurement_unit == 'rainfall'">
+      <tr>
+        <th>Geolocation</th>
+        <th>Rainfall (mm)</th>
+      </tr>
+      <tr>
+      <div *ngFor="let item of data;">
+        <td>{{ item.geolocation }}</td>
+        <td>{{ item.rainfall }}</td>
+      </div>
+    </tr>
+    </ng-container>
+
+    </table>
+    </div>
+
+</div>

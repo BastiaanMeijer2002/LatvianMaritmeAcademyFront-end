@@ -18,3 +18,8 @@ export interface geolocationPlace {
   place: String,
   country: String
 }
+
+export interface statistics {
+  geolocation: String
+  measurement: String
+}

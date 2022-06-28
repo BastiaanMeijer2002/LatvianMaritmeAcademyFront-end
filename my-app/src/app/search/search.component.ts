@@ -16,7 +16,6 @@ export class SearchComponent implements OnInit {
   }
 
 
-
   searchStation() {
     // @ts-ignore
     const place = document.getElementById('place').value;
