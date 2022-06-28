@@ -11,6 +11,8 @@ import { StationComponent } from './station/station.component';
 import { MyChartComponent } from './my-chart/my-chart.component';
 import { ForgotPswComponent } from './forgot-psw/forgot-psw.component';
 import { HomeComponent } from './home/home.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -25,7 +27,7 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    // HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: 'search', component: SearchComponent },
@@ -34,7 +36,13 @@ import { HomeComponent } from './home/home.component';
       { path: 'my-chart', component: MyChartComponent },
       { path: 'forgot-psw', component: ForgotPswComponent },
       { path: '', component: HomeComponent }
-    ])
+    ]),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
