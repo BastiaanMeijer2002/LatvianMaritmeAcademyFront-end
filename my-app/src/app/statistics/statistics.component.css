@@ -13,7 +13,8 @@
 /*Voor brede scherm------------------------------------------------------------------------------*/
 @media only screen and (min-width: 768px) {
   .container {
-    margin-top: 400px;
+    margin-top: 15%;
+    margin-bottom: 15%;
     color: black;
     text-align: center;
     background: white;
@@ -22,3 +23,33 @@
   }
 
 }
+
+.layout-container {
+  display: flex;
+  gap: 5%;
+
+}
+
+@media only screen and (max-width: 768px) {
+  .layout-container{
+    flex-direction: column-reverse;
+  }
+}
+main {
+  flex: 3;
+  display: flex;
+}
+aside {
+  margin-top: 2.5%;
+  flex: 1;
+  column-gap: 5%;
+}
+
+label {
+  float: left;
+}
+
+.sidebarItem {
+  margin-top: 5%;
+}
+

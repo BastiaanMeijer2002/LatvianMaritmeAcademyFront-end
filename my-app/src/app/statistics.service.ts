@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {statistics} from "./interfaces";
+import {geolocationPlace, statistics} from "./interfaces";
 import {catchError, Observable, retry, throwError} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
@@ -8,7 +8,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class StatisticsService {
 
-  apiUrl = 'http://localhost:8000/api/statistics';
+  apiUrl = 'http://localhost:8000/api';
   token = localStorage.getItem('jwt');
   authCode = `Bearer ${this.token}`;
 
@@ -25,11 +25,12 @@ export class StatisticsService {
                 order: string,
                 date_start: string,
                 date_end: string,
-                amount: string): Observable<statistics> {
-
+                amount: string,
+                country:any
+  ): Observable<statistics> {
 
     return this.http
-      .get<statistics>(this.apiUrl + `/${measurement_unit}/${order}/${date_start}/${date_end}/${amount}`, {
+      .get<statistics>(this.apiUrl + `/statistics/${measurement_unit}/${order}/${date_start}/${date_end}/${amount}/${country}`, {
         headers: {
           'Authorization': this.authCode,
           'Content-Type': 'application/json'
@@ -39,6 +40,17 @@ export class StatisticsService {
       .pipe(retry(2), catchError(this.handleError));
 
 
+  }
+
+  getGeolocationPlace(id: string){
+    return this.http
+      .get<geolocationPlace>(this.apiUrl + `/geolocation/info/${id}`, {
+        headers: {
+          'Authorization': this.authCode,
+          'Content-Type': 'application/json'
+        }
+      })
+      .pipe(retry(2), catchError(this.handleError));
   }
 
   handleError(error: any) {
