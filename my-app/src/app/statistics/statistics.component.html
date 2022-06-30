@@ -1,66 +1,66 @@
 <body class="container">
 <div class="layout-container">
-  <main>
-    <table class="table table-striped-columns">
-      <ng-container *ngIf="measurement_unit.value == 'temperature'">
-        <thead>
+  <div class="table-class">
+      <table class="table table-striped-columns">
+        <ng-container *ngIf="measurement_unit.value == 'temperature'">
+          <thead>
+            <tr>
+              <th scope="col">Rank</th>
+              <th scope="col">Geolocation</th>
+              <th scope="col">Temperature (celsius)</th>
+            </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let item of data;let indexOfElement = index;">
+            <tr class="table">
+              <th scope="row">{{ indexOfElement }}</th>
+              <td>{{ item.geolocation }}</td>
+              <td>{{ item.temperature }}</td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </ng-container>
+
+        <ng-container *ngIf="measurement_unit.value == 'wind_speed'">
+          <thead>
           <tr>
             <th scope="col">Rank</th>
             <th scope="col">Geolocation</th>
-            <th scope="col">Temperature (celsius)</th>
+            <th scope="col">Wind speed (km/h)</th>
           </tr>
-        </thead>
-        <tbody>
-        <ng-container *ngFor="let item of data;let indexOfElement = index;">
-          <tr class="table">
-            <th scope="row">{{ indexOfElement }}</th>
-            <td>{{ item.geolocation }}</td>
-            <td>{{ item.temperature }}</td>
-          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let item of data;let indexOfElement = index;">
+            <tr>
+              <th scope="row">{{ indexOfElement }}</th>
+              <td>{{ item.geolocation }}</td>
+              <td>{{ item.wind_speed }}</td>
+            </tr>
+          </ng-container>
+          </tbody>
         </ng-container>
-        </tbody>
-      </ng-container>
 
-      <ng-container *ngIf="measurement_unit.value == 'wind_speed'">
-        <thead>
-        <tr>
-          <th scope="col">Rank</th>
-          <th scope="col">Geolocation</th>
-          <th scope="col">Wind speed (km/h)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <ng-container *ngFor="let item of data;let indexOfElement = index;">
+
+        <ng-container *ngIf="measurement_unit.value == 'rainfall'">
+          <thead>
           <tr>
-            <th scope="row">{{ indexOfElement }}</th>
-            <td>{{ item.geolocation }}</td>
-            <td>{{ item.wind_speed }}</td>
+            <th scope="col">Rank</th>
+            <th scope="col">Geolocation</th>
+            <th scope="col">Rainfall (mm)</th>
           </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let item of data;let indexOfElement = index;">
+            <tr>
+              <th scope="row">{{ indexOfElement }}</th>
+              <td>{{ item.geolocation }}</td>
+              <td>{{ item.rainfall }}</td>
+            </tr>
+          </ng-container>
+          </tbody>
         </ng-container>
-        </tbody>
-      </ng-container>
 
-
-      <ng-container *ngIf="measurement_unit.value == 'rainfall'">
-        <thead>
-        <tr>
-          <th scope="col">Rank</th>
-          <th scope="col">Geolocation</th>
-          <th scope="col">Rainfall (mm)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <ng-container *ngFor="let item of data;let indexOfElement = index;">
-          <tr>
-            <th scope="row">{{ indexOfElement }}</th>
-            <td>{{ item.geolocation }}</td>
-            <td>{{ item.rainfall }}</td>
-          </tr>
-        </ng-container>
-        </tbody>
-      </ng-container>
-
-    </table>
+      </table>
 
 <!--    <table mat-table [dataSource]="data" class="mat-elevation-z19">-->
 <!--      <ng-container matColumnDef="geolocation">-->
@@ -91,7 +91,7 @@
 <!--      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
 <!--      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
 <!--    </table>-->
-  </main>
+  </div>
 
   <aside>
     <form class="form-control">
