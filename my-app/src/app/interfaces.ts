@@ -30,3 +30,4 @@ export interface statistics {
   geolocation: String
   measurement: String
 }
+

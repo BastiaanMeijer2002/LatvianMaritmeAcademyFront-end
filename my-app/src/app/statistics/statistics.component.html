@@ -1,19 +1,8 @@
-<div class="g-container">
-  <div class="container">
-    <select id="measurement_unit">
-      <option value="temperature">Temperature</option>
-      <option value="wind_speed">Wind speed</option>
-      <option value="wind_direction">Wind direction</option>
-      <option value="rainfall">Rain</option>
-    </select>
-    <input type="text" id="order"/>
-    <input type="date" id="date_start" name="date_start" #date_start>
-    <input type="date" id="date_end" name="date_end" #date_end>
-    <input type="text" id="amount" name="amount" #amount>
-    <button (click)="getStatistics()">Search</button>
-
-    <table class="table">
-      <ng-container *ngIf="measurement_unit == 'temperature'">
+<body class="container">
+<div class="layout-container">
+  <main>
+    <table class="table table-striped-columns">
+      <ng-container *ngIf="measurement_unit.value == 'temperature'">
         <thead>
           <tr>
             <th scope="col">Rank</th>
@@ -22,55 +11,144 @@
           </tr>
         </thead>
         <tbody>
-        <div *ngFor="let item of data;let indexOfElement = index;">
-          <th scope="row">{{ indexOfElement }}</th>
-          <td>{{ item.geolocation }}</td>
-          <td>{{ item.temperature }}</td>
-        </div>
+        <ng-container *ngFor="let item of data;let indexOfElement = index;">
+          <tr class="table">
+            <th scope="row">{{ indexOfElement }}</th>
+            <td>{{ item.geolocation }}</td>
+            <td>{{ item.temperature }}</td>
+          </tr>
+        </ng-container>
         </tbody>
       </ng-container>
 
-    <ng-container *ngIf="measurement_unit == 'wind_speed'">
-      <tr>
-        <th>Geolocation</th>
-        <th>Wind speed (km/h)</th>
-      </tr>
-      <th></th>
-      <tr>
-      <div *ngFor="let item of data;">
-        <td>{{ item.geolocation }}</td>
-        <td>{{ item.wind_speed }}</td>
-      </div>
-      </tr>
-    </ng-container>
+      <ng-container *ngIf="measurement_unit.value == 'wind_speed'">
+        <thead>
+        <tr>
+          <th scope="col">Rank</th>
+          <th scope="col">Geolocation</th>
+          <th scope="col">Wind speed (km/h)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of data;let indexOfElement = index;">
+          <tr>
+            <th scope="row">{{ indexOfElement }}</th>
+            <td>{{ item.geolocation }}</td>
+            <td>{{ item.wind_speed }}</td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </ng-container>
 
-    <ng-container *ngIf="measurement_unit == 'wind_direction'">
-      <tr>
-        <th>Geolocation</th>
-        <th>Wind Direction (degrees)</th>
-      </tr>
-      <tr>
-      <div *ngFor="let item of data;">
-          <td>{{ item.geolocation }}</td>
-          <td>{{ item.wind_direction }}</td>
-      </div>
-      </tr>
-    </ng-container>
 
-    <ng-container *ngIf="measurement_unit == 'rainfall'">
-      <tr>
-        <th>Geolocation</th>
-        <th>Rainfall (mm)</th>
-      </tr>
-      <tr>
-      <div *ngFor="let item of data;">
-        <td>{{ item.geolocation }}</td>
-        <td>{{ item.rainfall }}</td>
-      </div>
-    </tr>
-    </ng-container>
+      <ng-container *ngIf="measurement_unit.value == 'rainfall'">
+        <thead>
+        <tr>
+          <th scope="col">Rank</th>
+          <th scope="col">Geolocation</th>
+          <th scope="col">Rainfall (mm)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of data;let indexOfElement = index;">
+          <tr>
+            <th scope="row">{{ indexOfElement }}</th>
+            <td>{{ item.geolocation }}</td>
+            <td>{{ item.rainfall }}</td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </ng-container>
 
     </table>
-    </div>
+
+<!--    <table mat-table [dataSource]="data" class="mat-elevation-z19">-->
+<!--      <ng-container matColumnDef="geolocation">-->
+<!--        <th mat-header-cell *matHeaderCellDef>Geolocation</th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{ element.geolocation }} </td>-->
+<!--      </ng-container>-->
+<!--      <ng-container *ngIf="measurement_unit.value == 'temperature';else windSpeed">-->
+<!--        <ng-container matColumnDef="temperature">-->
+<!--          <th mat-header-cell *matHeaderCellDef>Temperature (Celsius)</th>-->
+<!--          <td mat-cell *matCellDef="let element"> {{ element.temperature }} </td>-->
+<!--        </ng-container>-->
+<!--      </ng-container>-->
+<!--      <ng-template #windSpeed >-->
+<!--        <ng-container *ngIf="measurement_unit.value == 'wind_speed'; else rainFall">-->
+<!--          <ng-container matColumnDef="wind_speed">-->
+<!--            <th mat-header-cell *matHeaderCellDef>Wind speed (KM/H)</th>-->
+<!--            <td mat-cell *matCellDef="let element"> {{ element.wind_speed }} </td>-->
+<!--          </ng-container>-->
+<!--        </ng-container>-->
+<!--      </ng-template>-->
+<!--      <ng-template #rainFall>-->
+<!--        <ng-container matColumnDef="rainfall">-->
+<!--          <th mat-header-cell *matHeaderCellDef>Rain (MM)</th>-->
+<!--          <td mat-cell *matCellDef="let element"> {{ element.rainfall }} </td>-->
+<!--        </ng-container>-->
+<!--      </ng-template>-->
+
+<!--      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--    </table>-->
+  </main>
+
+  <aside>
+    <form class="form-control">
+      <div class="sidebarItem">
+        <label for="measurement_unit" class="form-label-sm">Measurement unit: </label>
+        <select class="form-select" id="measurement_unit" #measurement_unit required>
+          <option value="temperature">Temperature</option>
+          <option value="wind_speed">Wind speed</option>
+          <option value="rainfall">Rain</option>
+        </select>
+      </div>
+
+      <div class="sidebarItem">
+        <label for="order" class="form-label-sm">Order: </label>
+        <select class="form-select" id="order" #order required>
+          <option value="highest">Highest measurement</option>
+          <option value="lowest">Lowest measurement</option>
+        </select>
+      </div>
+
+      <div class="sidebarItem">
+        <label for="date_start" class="form-label-sm">Start date: </label>
+        <input type="date" class="form-control" id="date_start" name="date_start" placeholder="Start Date" #date_start required>
+      </div>
+
+      <div class="sidebarItem">
+        <label for="date_end" class="form-label-sm">End date: </label>
+        <input type="date" class="form-control" id="date_end" name="date_end" placeholder="End Date" #date_end required>
+      </div>
+
+      <div class="sidebarItem">
+        <label for="amount" class="form-label-sm">Amount of locations: </label>
+        <input type="number" value="15" class="form-control" id="amount" name="amount" placeholder="Amount" #amount required>
+      </div>
+
+      <div class="sidebarItem">
+        <label for="country" class="form-label-sm">Region: </label>
+        <select id="country" class="form-select">
+          <option value="none">Baltic Sea Region</option>
+          <option value="LV">Latvia</option>
+          <option value="DE">Germany</option>
+          <option value="DK">Denmark</option>
+          <option value="EE">Estonia</option>
+          <option value="FI">Finland</option>
+          <option value="LT">Lithuania</option>
+          <option value="PL">Poland</option>
+          <option value="RU">Russia</option>
+          <option value="SE">Sweden</option>
+        </select>
+      </div>
+
+      <div class="sidebarItem">
+        <button class="form-control" (click)="getStatistics()">Search</button>
+      </div>
+    </form>
+  </aside>
 
 </div>
+</body>
+
