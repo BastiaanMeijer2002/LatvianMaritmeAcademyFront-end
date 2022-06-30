@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
 import Chart from 'chart.js/auto'
 
 import { StationService,  } from "../station.service";
-import {Stationdata} from "../interfaces";
+import {Stationdata, StationdataSimple} from "../interfaces";
 
 @Component({
   selector: 'app-my-chart',
@@ -10,14 +11,20 @@ import {Stationdata} from "../interfaces";
   styleUrls: ['./my-chart.component.css']
 })
 export class MyChartComponent implements OnInit {
+  id = ""
   stationdata?:Stationdata
-  stationdataSet?:Stationdata[]
+  stationdataSet?:StationdataSimple[]
+  labels:string[] = []
+  rainChartData:number[] = []
+  windChartData:number[] = []
 
   private stationService:StationService = new StationService()
 
-  constructor() { }
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit() {
+    this.id = this.route.snapshot.params['id'];
+
     this.stationService.stationdata$.subscribe(data => {
       if (data != undefined) {
         console.log(data)
@@ -25,27 +32,42 @@ export class MyChartComponent implements OnInit {
         // @ts-ignore
         document.getElementById('arrowfront').style.transform = `rotate(${data.wind_direction+90}deg)`
       } else {
-        this.stationService.setWeatherData(1)
+        this.stationService.setWeatherData(parseInt(this.id))
       }
     })
 
-    this.stationService.setWeatherDataSet(1)
     this.stationService.stationdataSet$.subscribe(data => {
       if (data != undefined) {
         this.stationdataSet = data
-        console.log(this.stationdataSet)
+        this.labels = []
+
+        this.rainChartData = []
+        this.windChartData = []
+        this.stationdataSet.forEach(stationdata => {
+          this.labels.push(stationdata.date)
+          this.rainChartData.push(stationdata.rainfall)
+          this.windChartData.push(stationdata.wind_speed)
+        })
+
+        rainChart.data.labels = this.labels
+        rainChart.data.datasets[0].data = this.rainChartData
+        rainChart.update()
+
+        windChart.data.labels = this.labels
+        windChart.data.datasets[0].data = this.windChartData
+        windChart.update()
       } else {
-        this.stationService.setWeatherDataSet(1)
+        this.stationService.setWeatherDataSet(parseInt(this.id), 7)
       }
     })
 
-    const myChart = new Chart("myChart", {
+    const rainChart = new Chart("myChart", {
       type: 'line',
       data: {
-        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        labels: this.labels,
         datasets: [{
           label: 'Current data',
-          data: [12, 19, 3, 5, 2, 3, 7],
+          data: this.rainChartData,
           backgroundColor: [
             'rgba(0, 0, 255, 0.2)'
           ],
@@ -53,17 +75,7 @@ export class MyChartComponent implements OnInit {
             'rgba(0, 0, 255, 1)'
           ],
           borderWidth: 1
-        },{
-          label: 'Las week data',
-          data: [14, 15, 7, 2, 9, 4, 8],
-          backgroundColor: [
-            'rgba(255, 0, 0, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 0, 0, 1)'
-          ],
-          borderWidth: 1
-        }]
+        },]
       },
       options: {
         scales: {
@@ -74,7 +86,7 @@ export class MyChartComponent implements OnInit {
       }
     });
 
-    const myChartBar = new Chart("myChartBar", {
+    const windChart = new Chart("myChartBar", {
       type: 'bar',
       data: {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -88,17 +100,7 @@ export class MyChartComponent implements OnInit {
             'rgba(222, 104, 247, 1)'
           ],
           borderWidth: 1
-        },{
-          label: 'Las week data',
-          data: [1, 11, 17, 22, 19, 9, 3],
-          backgroundColor: [
-            'rgba(104, 247, 135, 0.2)'
-          ],
-          borderColor: [
-            'rgba(104, 247, 135, 1)'
-          ],
-          borderWidth: 1
-        }]
+        },]
       },
       options: {
         scales: {
@@ -108,40 +110,6 @@ export class MyChartComponent implements OnInit {
         }
       }
     });
-
-    // const myChartRadar = new Chart("myChartRadar", {
-    //   type: 'radar',
-    //   data: {
-    //     labels: ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'],
-    //     datasets: [{
-    //       label: 'Current data',
-    //       data: [11, 22, 33, 16, 23, 13, 19, 25, 17, 24, 11, 25, 12, 21, 32, 11],
-    //       backgroundColor: [
-    //         'rgba(255, 99, 132, 0.2)'
-    //       ],
-    //       borderColor: [
-    //         'rgba(255, 99, 132, 1)'
-    //       ],
-    //       borderWidth: 1
-    //     },{
-    //       label: 'Las week data',
-    //       data: [21, 12, 13, 36, 13, 23, 9, 15, 7, 14, 21, 15, 2, 11, 22, 1],
-    //       backgroundColor: [
-    //         'rgba(75, 192, 192, 0.2)'
-    //       ],
-    //       borderColor: [
-    //         'rgba(75, 192, 192, 1)'
-    //       ],
-    //       borderWidth: 1
-    //     }]
-    //   },
-    //   options: {
-    //     scales: {
-    //       y: {
-    //         beginAtZero: true
-    //       }
-    //     }
-    //   }
-    // });
   }
+
 }

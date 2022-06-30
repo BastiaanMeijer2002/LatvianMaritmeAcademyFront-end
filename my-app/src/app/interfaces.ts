@@ -9,6 +9,13 @@ export interface Stationdata {
   rain:Number
 }
 
+export interface StationdataSimple {
+  geolocation:String,
+  date:string,
+  wind_speed:number,
+  rainfall:number
+}
+
 export interface loginData {
   username:String,
   password:String
