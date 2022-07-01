@@ -1,5 +1,9 @@
 body {
-  font-family: 'Cardo', serif;
+  font-family: 'Arial', serif;
+}
+
+nav{
+  font-family: 'Arial', serif;
 }
 /*Voor kleine scherm------------------------------------------------------------------------------*/
 @media only screen and (max-width: 768px) {
@@ -22,7 +26,7 @@ body {
     color: black;
     text-decoration: none;
     font-size: 25px;
-    font-family: "Times New Roman";
+    font-family: 'Arial', serif;
   }
 
   .nav__links li a:hover {
@@ -57,7 +61,7 @@ body {
     color: black;
     text-decoration: none;
     font-size: 25px;
-    font-family: "Times New Roman";
+    font-family: 'Arial', serif;
   }
 
   .nav__links li a:hover {

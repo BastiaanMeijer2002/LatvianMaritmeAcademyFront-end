@@ -22,4 +22,18 @@ export class SecurityService {
 
     return;
   }
+
+  getAuthStatus(){
+    let token = localStorage.getItem('jwt')
+    let jwtHelper = new JwtHelperService();
+
+    if (!token){
+      return false;
+    } else if (jwtHelper.isTokenExpired(token)){
+      localStorage.removeItem(token);
+      return false;
+    }
+
+    return true;
+  }
 }
