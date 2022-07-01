@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router"
+import {SecurityService} from "../security.service";
 
 
 @Component({
@@ -9,14 +10,16 @@ import {Router} from "@angular/router"
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private securityService: SecurityService) { }
 
   ngOnInit(): void {
+    this.securityService.checkAuthStatus();
 
   }
 
 
   searchStation() {
+    this.securityService.checkAuthStatus();
     // @ts-ignore
     const place = document.getElementById('place').value;
     let token = localStorage.getItem('jwt')

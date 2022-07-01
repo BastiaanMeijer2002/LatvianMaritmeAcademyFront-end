@@ -42,7 +42,7 @@ body {
     background: white;
     padding: 10px;
     border-radius: 10px;
-    display: inline-block;
+    display: flex;
     float: right;
     text-decoration: none;
     margin-top: 6.5vh;

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StatisticsService} from "../statistics.service";
 import {statistics} from "../interfaces";
 import {StationService} from "../station.service";
+import {SecurityService} from "../security.service";
 
 @Component({
   selector: 'app-statistics',
@@ -17,12 +18,14 @@ export class StatisticsComponent implements OnInit {
   country: any;
   data: any;
 
-  constructor(private statisticsService: StatisticsService, private stationService: StationService) { }
+  constructor(private statisticsService: StatisticsService, private securityService: SecurityService) { }
 
   ngOnInit(): void {
+    this.securityService.checkAuthStatus();
   }
 
   getStatistics() {
+    this.securityService.checkAuthStatus();
     this.measurement_unit = (<HTMLInputElement>document.getElementById("measurement_unit")).value;
     this.order = (<HTMLInputElement>document.getElementById("order")).value;
     this.date_start = (<HTMLInputElement>document.getElementById("date_start")).value;

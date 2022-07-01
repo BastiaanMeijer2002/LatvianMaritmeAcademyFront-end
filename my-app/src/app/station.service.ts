@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import {geolocationPlace, Stationdata, StationdataSimple} from "./interfaces";
 import {BehaviorSubject, Observable} from "rxjs";
+import {SecurityService} from "./security.service";
 
 @Injectable({
   providedIn: 'root'
@@ -28,15 +29,7 @@ export class StationService {
     let authCode = `Bearer ${token}`
 
     fetch(`http://localhost:8000/api/geolocation/info/place/${id}`, {headers:{'Authorization': authCode}}).then(res => {
-      if (res.status === 401) {
-        console.log('JWT verlopen/niet aanwezig')
-        localStorage.removeItem('jwt')
-        window.location.href = '/login'
-        alert('Session expired.')
-        return
-      } else {
-        return res.json()
-      }
+      return res.json()
     }).then(r => {
       this.geolocationPlace = {place: r['place'], country: r['country']}
     }).then(r => this.geolocationPlace$.next(this.geolocationPlace))
@@ -52,15 +45,7 @@ export class StationService {
     let authCode = `Bearer ${token}`
 
     fetch("http://localhost:8000/api/live/" + id, {headers:{'Authorization': authCode}}).then(res => {
-      if (res.status === 401) {
-        console.log('JWT verlopen/niet aanwezig')
-        localStorage.removeItem('jwt')
-        window.location.href = '/login'
-        alert('Session expired.')
-        return
-      } else {
-        return res.json()
-      }
+      return res.json();
     }).then(res => {
       this.stationdata = {id:res.id, geolocation:res.geolocation, date:res.date, time:res.time, temperature:res.temperature, wind_speed:res['wind-speed'], wind_direction:res['wind-direction'], rain:res.rain}
     }).then(res => this.stationdata$.next(this.stationdata))
@@ -74,15 +59,7 @@ export class StationService {
     let token = localStorage.getItem('jwt')
     let authCode = `Bearer ${token}`
       fetch("http://localhost:8000/api/analytics/days/"+id+"/"+days,{headers:{'Authorization': authCode}}).then(res => {
-        if (res.status === 401) {
-          console.log('JWT verlopen/niet aanwezig')
-          localStorage.removeItem('jwt')
-          window.location.href = '/login'
-          alert('Session expired.')
-          return
-        } else {
-          return res.json() as unknown as StationdataSimple[]
-        }
+        return res.json();
       }).then(res => {
         if (res != undefined) {
           this.stationdataSet = res

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Stationdata } from '../interfaces'
 import { StationService } from "../station.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {SecurityService} from "../security.service";
 
 @Component({
   selector: 'app-station',
@@ -21,10 +22,11 @@ export class StationComponent implements OnInit {
   private stationService:StationService = new StationService()
   private downloadUrl: SafeUrl | undefined;
 
-  constructor(private route:ActivatedRoute, private sanitizer: DomSanitizer) {
+  constructor(private route:ActivatedRoute, private sanitizer: DomSanitizer, private securityService: SecurityService) {
   }
 
   ngOnInit(){
+    this.securityService.checkAuthStatus();
     const downloadButton = document.querySelector('#downloadButton')
 
     this.id = this.route.snapshot.params['id'];

@@ -1,6 +1,8 @@
 import {Component, ElementRef} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {SwUpdate} from "@angular/service-worker";
+import {JwtHelperService} from '@auth0/angular-jwt';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 // import {map, startWith} from 'rxjs/operators';
 // import {Observable} from "rxjs";
@@ -16,14 +18,10 @@ export class AppComponent {
   title = 'my-app';
   // public repos: Observable<any>;
 
+
+
   ngOnInit() {
     const logoutButton = document.querySelector('#logoutButton')
-
-    let jwt = localStorage.getItem('jwt')
-    if (jwt === undefined) {
-      ElementRef
-
-    }
 
     logoutButton?.addEventListener("click", btn => {
       btn.preventDefault()
@@ -53,9 +51,11 @@ export class AppComponent {
   //   )
   // }
   update: boolean = false;
-  constructor(updates: SwUpdate) {
+  constructor(updates: SwUpdate , private route: Router) {
     updates.available.subscribe(event =>{
       updates.activateUpdate().then(() => document.location.reload());
+
+
     })
   }
 }

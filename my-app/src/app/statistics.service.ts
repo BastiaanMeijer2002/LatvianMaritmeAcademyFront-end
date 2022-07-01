@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {geolocationPlace, statistics} from "./interfaces";
 import {catchError, Observable, retry, throwError} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {SecurityService} from "./security.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class StatisticsService {
   token = localStorage.getItem('jwt');
   authCode = `Bearer ${this.token}`;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private securityService: SecurityService) {
   }
 
   httpOptions = {

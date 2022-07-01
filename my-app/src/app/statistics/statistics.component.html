@@ -13,7 +13,7 @@
           <tbody>
           <ng-container *ngFor="let item of data;let indexOfElement = index;">
             <tr class="table">
-              <th scope="row">{{ indexOfElement }}</th>
+              <th scope="row">{{ indexOfElement+1 }}</th>
               <td>{{ item.geolocation }}</td>
               <td>{{ item.temperature }}</td>
             </tr>
@@ -32,7 +32,7 @@
           <tbody>
           <ng-container *ngFor="let item of data;let indexOfElement = index;">
             <tr>
-              <th scope="row">{{ indexOfElement }}</th>
+              <th scope="row">{{ indexOfElement+1 }}</th>
               <td>{{ item.geolocation }}</td>
               <td>{{ item.wind_speed }}</td>
             </tr>
@@ -52,7 +52,7 @@
           <tbody>
           <ng-container *ngFor="let item of data;let indexOfElement = index;">
             <tr>
-              <th scope="row">{{ indexOfElement }}</th>
+              <th scope="row">{{ indexOfElement+1 }}</th>
               <td>{{ item.geolocation }}</td>
               <td>{{ item.rainfall }}</td>
             </tr>

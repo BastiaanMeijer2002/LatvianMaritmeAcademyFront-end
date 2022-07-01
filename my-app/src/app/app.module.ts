@@ -21,6 +21,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatTableModule} from "@angular/material/table";
+import { AuthorizationFailedComponent } from './authorization-failed/authorization-failed.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {MatTableModule} from "@angular/material/table";
     MyChartComponent,
     ForgotPswComponent,
     HomeComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    AuthorizationFailedComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import {MatTableModule} from "@angular/material/table";
       {path: 'my-chart', component: MyChartComponent},
       {path: 'forgot-psw', component: ForgotPswComponent},
       {path: '', component: HomeComponent},
-      {path: 'statistics', component: StatisticsComponent}
+      {path: 'statistics', component: StatisticsComponent},
+      {path: 'authorization-failed', component: AuthorizationFailedComponent}
     ]),
     FormsModule,
     HttpClientModule,
