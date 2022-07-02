@@ -63,4 +63,12 @@ export class AppComponent {
   isAuthorized(){
     return this.securityService.getAuthStatus();
   }
+
+  isInitialized(){
+    let data = localStorage.getItem('stationdata')
+    if (data) {
+      return true
+    }
+    return false
+  }
 }

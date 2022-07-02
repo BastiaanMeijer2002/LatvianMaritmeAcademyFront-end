@@ -16,7 +16,7 @@
             </tr>
           </thead>
           <tbody>
-          <ng-container *ngIf="state != 'live'; else: elseBlock">
+          <ng-container *ngIf="state != 'live' && state != 'stored'; else: elseBlock">
               <ng-container *ngFor="let item of data">
                 <tr>
                   <th scope="row">{{ item.time | slice:11:19 }}</th>
@@ -45,7 +45,7 @@
       <div class="list-group">
         <div class="list-group-item">
           <h4>Measured at:</h4>
-          <ng-container *ngIf="state=='live';else:elseContainer">
+          <ng-container *ngIf="state==('live' && 'stored');else:elseContainer">
             <p>{{ data.date | slice:0:10}}</p>
           </ng-container>
           <ng-template #elseContainer>

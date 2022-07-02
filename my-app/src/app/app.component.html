@@ -7,6 +7,7 @@
       <li><a routerLink="">Home</a></li>
       <ng-container *ngIf="isAuthorized()">
         <li #search id="search"><a routerLink="/search">Search</a></li>
+        <li #station id="station" *ngIf="isInitialized()"><a routerLink="/station/main/stored">Station</a></li>
         <li #statistics id="statistics"><a routerLink="/statistics">Statistics</a></li>
         <li #logout (click)="logoutEvent()" id="logout"><a id="logoutButton">Log out</a></li>
       </ng-container>
