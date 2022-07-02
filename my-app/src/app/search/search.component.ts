@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
       .then(r => {
         return r.json()
       }).then(r => {
-        this.router.navigate(['/station', r['id']]).then()
+        this.router.navigate(['/station', r['id'], 'live']).then()
     })
 
 

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import {geolocationPlace, Stationdata, StationdataSimple} from "./interfaces";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, catchError, Observable, retry, throwError} from "rxjs";
 import {SecurityService} from "./security.service";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class StationService {
   public stationdataSet$ = new BehaviorSubject<StationdataSimple[]|undefined>(this.stationdataSet)
   public geolocationPlace$ = new BehaviorSubject(<geolocationPlace|undefined>(this.geolocationPlace))
 
-  constructor() {
+  token = localStorage.getItem('jwt');
+  authCode = `Bearer ${this.token}`;
+
+  constructor(private http: HttpClient) {
 
   }
 
@@ -60,7 +64,8 @@ export class StationService {
     let authCode = `Bearer ${token}`
       fetch("http://localhost:8000/api/analytics/days/"+id+"/"+days,{headers:{'Authorization': authCode}}).then(res => {
         return res.json();
-      }).then(res => {
+      })
+        .then(res => {
         if (res != undefined) {
           this.stationdataSet = res
           this.stationdataSet$.next(this.stationdataSet)
@@ -69,5 +74,48 @@ export class StationService {
       })
   }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': this.authCode
+    })
+  }
+
+  getHistoricalData(id:string, date:string): Observable<Stationdata>{
+    return this.http
+      .get<Stationdata>(`http://localhost:8000/api/historical/${id}/${date}`, {
+        headers: {
+          'Authorization': this.authCode,
+          'Content-Type': 'application/json'
+        }
+      })
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getData(id:string): Observable<Stationdata>{
+    return this.http
+      .get<Stationdata>(`http://localhost:8000/api/live/${id}`, {
+        headers: {
+          'Authorization': this.authCode,
+          'Content-Type': 'application/json'
+        }
+      })
+      .pipe(retry(2), catchError(this.handleError))
+  }
+
+  handleError(error: any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(() => {
+      return errorMessage;
+    });
+
+  }
 
 }

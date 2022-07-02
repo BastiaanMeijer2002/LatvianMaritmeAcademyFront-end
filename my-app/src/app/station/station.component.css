@@ -33,5 +33,26 @@
   }
 }
 
+.layout-container {
+  display: flex;
+  gap: 5%;
+  overflow: hidden;
+
+}
+
+@media only screen and (max-width: 768px) {
+  .layout-container{
+    flex-direction: column-reverse;
+  }
+}
+
+.weatherdata-container{
+  flex: 3;
+}
+
+aside{
+  flex: 1;
+}
+
 
 

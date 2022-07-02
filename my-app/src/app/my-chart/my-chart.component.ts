@@ -18,9 +18,8 @@ export class MyChartComponent implements OnInit {
   rainChartData:number[] = []
   windChartData:number[] = []
 
-  private stationService:StationService = new StationService()
 
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute, private stationService: StationService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];

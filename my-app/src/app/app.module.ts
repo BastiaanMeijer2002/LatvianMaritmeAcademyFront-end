@@ -34,7 +34,7 @@ import { AuthorizationFailedComponent } from './authorization-failed/authorizati
     ForgotPswComponent,
     HomeComponent,
     StatisticsComponent,
-    AuthorizationFailedComponent
+    AuthorizationFailedComponent,
   ],
   imports: [
     BrowserModule,
