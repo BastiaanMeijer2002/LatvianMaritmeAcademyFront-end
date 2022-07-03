@@ -15,7 +15,7 @@
               <th scope="col">Rain (MM)</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngIf="data">
           <ng-container *ngIf="state != 'live' && state != 'stored'; else: elseBlock">
               <ng-container *ngFor="let item of data">
                 <tr>

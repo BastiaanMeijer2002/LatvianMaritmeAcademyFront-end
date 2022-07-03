@@ -50,13 +50,21 @@ export class StationComponent implements OnInit {
   }
 
   downloadJson() {
-    // let data = this.stationdata
-    // let file = new Blob([data], {type: JSONFile})
-    let testData = '{"name":"testdata", "values":"this is test data", "reasons":"to test"}'
+    let data = JSON.stringify(this.data)
 
-    let data = JSON.stringify(this.stationdata)
-    let url = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(testData))
-    this.downloadUrl = url
+    var filename = "file.xml";
+    var pom = document.createElement('a');
+    const blob = new Blob([data], { type: 'text/plain' });
+
+    pom.setAttribute('href', window.URL.createObjectURL(blob));
+    pom.setAttribute('download', filename);
+
+    pom.dataset['downloadurl'] = ['text/plain', pom.download, pom.href].join(':');
+    pom.draggable = true;
+    pom.classList.add('dragout');
+
+    const url= window.URL.createObjectURL(blob);
+    pom.click()
   }
 
   getHistorical(){
