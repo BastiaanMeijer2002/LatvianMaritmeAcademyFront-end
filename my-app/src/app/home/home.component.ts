@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SecurityService} from "../security.service";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private securityService: SecurityService) { }
 
   ngOnInit(): void {
+  }
+
+  isAuthorized(){
+    return this.securityService.getAuthStatus();
   }
 
 }

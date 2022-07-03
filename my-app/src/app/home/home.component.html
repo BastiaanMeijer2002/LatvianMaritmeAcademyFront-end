@@ -1,5 +1,16 @@
 <div class="container">
-  <h1>Welcome to LJA!</h1>
-  <h3>Latvian maritime academy, located in Riga, Latvia.<br>
-    It awards degrees below the doctoral level, and is the only institution in Latvia that grants university-level degrees in the maritime sector.</h3>
+  <h1>Welcome to Baltic weather</h1>
+  <br>
+  <h3>
+    This website provides weather data for the Latvian maritime academy, located in Riga, Latvia.
+  </h3>
+  <h3 *ngIf="!isAuthorized()">
+    <br>
+    Please log in to acces this websites services.
+  </h3>
+  <h3 *ngIf="isAuthorized">
+    <br>
+    You can use the search page to search for a specific station.
+    You can also use the statistics page to look for the most extreme measurements.
+  </h3>
 </div>
