@@ -146,6 +146,12 @@
       <div class="sidebarItem">
         <button class="form-control" (click)="getStatistics()">Search</button>
       </div>
+
+      <ng-container *ngIf="data">
+        <div class="sidebarItem">
+          <button class="form-control" (click)="downloadData(data)">Download</button>
+        </div>
+      </ng-container>
     </form>
   </aside>
 

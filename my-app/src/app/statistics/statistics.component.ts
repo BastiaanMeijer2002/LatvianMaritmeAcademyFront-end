@@ -3,6 +3,7 @@ import {StatisticsService} from "../statistics.service";
 import {statistics} from "../interfaces";
 import {StationService} from "../station.service";
 import {SecurityService} from "../security.service";
+import {DownloadService} from "../download.service";
 
 @Component({
   selector: 'app-statistics',
@@ -18,7 +19,7 @@ export class StatisticsComponent implements OnInit {
   country: any;
   data: any;
 
-  constructor(private statisticsService: StatisticsService, private securityService: SecurityService) { }
+  constructor(private statisticsService: StatisticsService, private securityService: SecurityService, private downloadService: DownloadService) { }
 
   ngOnInit(): void {
     this.securityService.checkAuthStatus();
@@ -37,6 +38,10 @@ export class StatisticsComponent implements OnInit {
       this.data = data;
     })
 
+  }
+
+  downloadData(data:any){
+    return this.downloadService.downloadJson(data);
   }
 
 }
