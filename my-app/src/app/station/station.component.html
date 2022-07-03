@@ -58,6 +58,15 @@
             <button class="btn btn-primary" (click)="getHistorical()">Search</button>
           </div>
         </div>
+        <div class="list-group-item">
+          <h5>Compare with other station</h5>
+          <div style="display: flex; flex-direction: row">
+            <label class="form-label" for="station">Place: </label>
+            <input class="form-control" #compareStation id="station" type="text">
+            <input type="date" id="compareDate" #compareDate>
+            <button class="btn btn-primary" (click)="getStationCompare(compareStation.value, compareDate.value)">Search</button>
+          </div>
+        </div>
       </div>
     </aside>
   </div>
