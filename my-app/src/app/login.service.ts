@@ -22,10 +22,18 @@ export class loginService {
         },
         body: body
       })
-      .then(resp => resp.json())
+      .then(resp => {
+        if (resp.status == 401){
+          alert('False credentials. Please try again')
+          return;
+        } else {
+          return resp.json();
+        }
+      })
       .then(json => {
         localStorage.setItem('jwt', json.token)
-      }).then(res => window.location.replace('/'))
+      })
+      .then(res => window.location.replace('/'))
   }
 }
 

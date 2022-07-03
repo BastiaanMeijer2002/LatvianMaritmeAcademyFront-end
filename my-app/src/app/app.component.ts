@@ -23,6 +23,7 @@ export class AppComponent {
 
   ngOnInit() {
     const logoutButton = document.getElementById('#logoutButton');
+   console.log(this.isAuthorized());
 
     logoutButton?.addEventListener("click", btn => {
       btn.preventDefault()

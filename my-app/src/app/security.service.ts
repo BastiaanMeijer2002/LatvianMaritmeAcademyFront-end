@@ -9,29 +9,32 @@ export class SecurityService {
 
   constructor(private router: Router) { }
 
-  checkAuthStatus(){
+  checkAuthStatus() {
     let token = localStorage.getItem('jwt')
     let jwtHelper = new JwtHelperService();
 
-    if (!token){
+    if (token) {
+      if (jwtHelper.isTokenExpired(token)) {
+        localStorage.removeItem(token);
+        return this.router.navigate(['authorization-failed']);
+      }
+    } else
       return this.router.navigate(['authorization-failed']);
-    } else if (jwtHelper.isTokenExpired(token)){
-      localStorage.removeItem(token);
-      return this.router.navigate(['authorization-failed']);
-    }
-
     return;
   }
+
 
   getAuthStatus(){
     let token = localStorage.getItem('jwt')
     let jwtHelper = new JwtHelperService();
 
-    if (!token){
-      return false;
-    } else if (jwtHelper.isTokenExpired(token)){
-      localStorage.removeItem(token);
-      return false;
+    if (token){
+      if (jwtHelper.isTokenExpired(token)) {
+        localStorage.removeItem(token);
+        return false;
+      }
+    } else {
+      return false
     }
 
     return true;
