@@ -14,11 +14,13 @@
 
 #compass-container {
   max-width: 300px;
+  width: 100%;
 }
 
 #compass {
+  max-width: 100%;
   width: 300px;
-  height: 300px;
+  padding-top: 100%;
   background-image:url('http://i.imgur.com/44nyA.jpg');
   position: relative;
   background-size: contain;
