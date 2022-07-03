@@ -5,7 +5,6 @@ import { Stationdata } from '../interfaces'
 import { StationService } from "../station.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {SecurityService} from "../security.service";
-import {json2xml} from "xml-js"
 
 @Component({
   selector: 'app-station',
@@ -52,7 +51,7 @@ export class StationComponent implements OnInit {
   downloadJson() {
     let data = JSON.stringify(this.data)
 
-    let xml = json2xml(data, {compact: true})
+    let xml = this.OBJtoXML(JSON.parse(data))
 
     var filename = "file.xml";
     var pom = document.createElement('a');
@@ -65,8 +64,28 @@ export class StationComponent implements OnInit {
     pom.draggable = true;
     pom.classList.add('dragout');
 
-    const url= window.URL.createObjectURL(blob);
     pom.click()
+  }
+
+  OBJtoXML(obj:any) {
+    var xml = '';
+    for (var prop in obj) {
+      xml += obj[prop] instanceof Array ? '' : "<" + prop + ">";
+      if (obj[prop] instanceof Array) {
+        for (var array in obj[prop]) {
+          xml += "<" + prop + ">";
+          xml += this.OBJtoXML(new Object(obj[prop][array]));
+          xml += "</" + prop + ">";
+        }
+      } else if (typeof obj[prop] == "object") {
+        xml += this.OBJtoXML(new Object(obj[prop]));
+      } else {
+        xml += obj[prop];
+      }
+      xml += obj[prop] instanceof Array ? '' : "</" + prop + ">";
+    }
+    var xml = xml.replace(/<\/?[0-9]{1,}>/g, '');
+    return xml
   }
 
   getHistorical(){
@@ -75,8 +94,6 @@ export class StationComponent implements OnInit {
     let result = this.stationService.getHistoricalData(this.id, this.state).subscribe((data:Stationdata) => {
       this.data = data;
     });
-
-
 
     return this.data;
   }
