@@ -5,6 +5,7 @@ import { Stationdata } from '../interfaces'
 import { StationService } from "../station.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {SecurityService} from "../security.service";
+import {JSONFile} from "@angular/cli/src/utilities/json-file";
 
 @Component({
   selector: 'app-station',
@@ -30,7 +31,6 @@ export class StationComponent implements OnInit {
 
   ngOnInit() {
     this.securityService.checkAuthStatus();
-    const downloadButton = document.querySelector('#downloadButton')
 
     this.id = this.route.snapshot.params['id'];
     this.state = this.route.snapshot.params['state'];
@@ -50,8 +50,12 @@ export class StationComponent implements OnInit {
   }
 
   downloadJson() {
+    // let data = this.stationdata
+    // let file = new Blob([data], {type: JSONFile})
+    let testData = '{"name":"testdata", "values":"this is test data", "reasons":"to test"}'
+
     let data = JSON.stringify(this.stationdata)
-    let url = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(data))
+    let url = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(testData))
     this.downloadUrl = url
   }
 
