@@ -45,19 +45,17 @@
       <div class="list-group">
         <div class="list-group-item">
           <h4>Measured at:</h4>
-          <ng-container *ngIf="state==('live' && 'stored');else:elseContainer">
-            <p>{{ data.date | slice:0:10}}</p>
-          </ng-container>
-          <ng-template #elseContainer>
-            <p>{{ state }}</p>
-          </ng-template>
+          <p>{{ data.date | slice:0:10}}</p>
+        </div>
+        <div class="list-group-item">
+          <h5>Download this data: </h5>
+          <button class="downloadButton btn btn-primary" (click)="downloadJson()" href="downloadUrl" download="data">Download</button>
         </div>
         <div class="list-group-item">
           <h5>Check out other dates and timestamps: </h5>
           <div style="display: flex; flex-direction: row">
             <input class="form-control" id="historical-date" type="date">
             <button class="btn btn-primary" (click)="getHistorical()">Search</button>
-            <button class="downloadButton" (click)="downloadJson()" href="downloadUrl" download="data">Download</button>
           </div>
         </div>
       </div>
