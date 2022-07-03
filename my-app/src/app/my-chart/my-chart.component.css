@@ -12,14 +12,17 @@
   margin-top: 8vh;
 }
 
+#compass-container {
+  max-width: 300px;
+}
+
 #compass {
   width: 300px;
   height: 300px;
   background-image:url('http://i.imgur.com/44nyA.jpg');
   position: relative;
   background-size: contain;
-  resize: both;
-  overflow: scroll;
+  background-repeat: no-repeat;
 }
 
 #h-comp {
@@ -27,18 +30,17 @@
 }
 
 #arrow {
-  width: 180px;
+  width: 100%;
   height: 20px;
   border-radius: 100px 0px 0px 100px;
   position: absolute;
   transform-origin: center;
-  top: 180px;
-  left: 5px;
   rotate: 50deg;
 }
 
 #arrowfront {
-  width: 180px;
+  width: 46%;
+  left: 4%;
   height: 20px;
   border-radius: 100px 0px 0px 100px;
   background: red;
@@ -56,11 +58,12 @@
   position: absolute;
 }
 
-#compass:hover #arrow {
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 /*Voor brede scherm------------------------------------------------------------------------------*/
