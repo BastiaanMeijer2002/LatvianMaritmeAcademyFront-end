@@ -5,6 +5,7 @@ import { Stationdata } from '../interfaces'
 import { StationService } from "../station.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {SecurityService} from "../security.service";
+import {DownloadService} from "../download.service";
 
 @Component({
   selector: 'app-station',
@@ -25,7 +26,7 @@ export class StationComponent implements OnInit {
   data: any;
   private downloadUrl: SafeUrl | undefined;
 
-  constructor(private route:ActivatedRoute, private sanitizer: DomSanitizer, private securityService: SecurityService, private router: Router, private stationService: StationService) {
+  constructor(private route:ActivatedRoute, private sanitizer: DomSanitizer, private securityService: SecurityService, private router: Router, private stationService: StationService, private downloadService: DownloadService) {
   }
 
   ngOnInit() {
@@ -48,44 +49,8 @@ export class StationComponent implements OnInit {
     }
   }
 
-  downloadJson() {
-    let data = JSON.stringify(this.data)
-
-    let xml = this.OBJtoXML(JSON.parse(data))
-
-    var filename = "file.xml";
-    var pom = document.createElement('a');
-    const blob = new Blob([xml], { type: 'text/plain' });
-
-    pom.setAttribute('href', window.URL.createObjectURL(blob));
-    pom.setAttribute('download', filename);
-
-    pom.dataset['downloadurl'] = ['text/plain', pom.download, pom.href].join(':');
-    pom.draggable = true;
-    pom.classList.add('dragout');
-
-    pom.click()
-  }
-
-  OBJtoXML(obj:any) {
-    var xml = '';
-    for (var prop in obj) {
-      xml += obj[prop] instanceof Array ? '' : "<" + prop + ">";
-      if (obj[prop] instanceof Array) {
-        for (var array in obj[prop]) {
-          xml += "<" + prop + ">";
-          xml += this.OBJtoXML(new Object(obj[prop][array]));
-          xml += "</" + prop + ">";
-        }
-      } else if (typeof obj[prop] == "object") {
-        xml += this.OBJtoXML(new Object(obj[prop]));
-      } else {
-        xml += obj[prop];
-      }
-      xml += obj[prop] instanceof Array ? '' : "</" + prop + ">";
-    }
-    var xml = xml.replace(/<\/?[0-9]{1,}>/g, '');
-    return xml
+  downloadData(data:any){
+    return this.downloadService.downloadJson(data);
   }
 
   getHistorical(){
