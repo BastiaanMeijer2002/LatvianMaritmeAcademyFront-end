@@ -5,7 +5,7 @@ import { Stationdata } from '../interfaces'
 import { StationService } from "../station.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {SecurityService} from "../security.service";
-import {JSONFile} from "@angular/cli/src/utilities/json-file";
+import {json2xml} from "xml-js"
 
 @Component({
   selector: 'app-station',
@@ -52,9 +52,11 @@ export class StationComponent implements OnInit {
   downloadJson() {
     let data = JSON.stringify(this.data)
 
+    let xml = json2xml(data, {compact: true})
+
     var filename = "file.xml";
     var pom = document.createElement('a');
-    const blob = new Blob([data], { type: 'text/plain' });
+    const blob = new Blob([xml], { type: 'text/plain' });
 
     pom.setAttribute('href', window.URL.createObjectURL(blob));
     pom.setAttribute('download', filename);
