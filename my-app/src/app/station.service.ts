@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {geolocationPlace, Stationdata, StationdataSimple} from "./interfaces";
+import {compareStation, geolocationPlace, Stationdata, StationdataSimple, stationID} from "./interfaces";
 import {BehaviorSubject, catchError, Observable, retry, throwError} from "rxjs";
 import {SecurityService} from "./security.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -12,6 +12,7 @@ export class StationService {
   stationdata?:Stationdata
   stationdataSet?:StationdataSimple[]
   geolocationPlace?:geolocationPlace
+  stationId:any;
 
   public stationdata$ = new BehaviorSubject<Stationdata|undefined>(this.stationdata)
   public stationdataSet$ = new BehaviorSubject<StationdataSimple[]|undefined>(this.stationdataSet)
@@ -117,5 +118,30 @@ export class StationService {
     });
 
   }
+
+  getStationId(place:string): Observable<stationID>{
+    return this.http
+    .get<stationID>(`http://localhost:8000/api/geolocation/id/${place}`, {
+      headers: {
+        'Authorization': this.authCode
+      }
+    })
+  }
+
+  getStationCompare(id:string, place:string, date:string){
+    let data: any;
+
+    this.getStationId(place).subscribe(r => {
+      this.stationId = r.id
+    })
+
+    return this.http
+      .get<compareStation>(`http://localhost:8000/api/compare/station/${id}/${this.stationId}/${date}`, {
+        headers: {
+          'Authorization': this.authCode
+        }
+      })
+  }
+
 
 }

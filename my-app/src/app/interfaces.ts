@@ -31,3 +31,12 @@ export interface statistics {
   measurement: String
 }
 
+export interface stationID{
+  id:Number
+}
+
+export interface compareStation{
+  station1: Array<any>
+  station2: Array<any>
+}
+

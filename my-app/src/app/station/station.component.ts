@@ -24,6 +24,7 @@ export class StationComponent implements OnInit {
   date:String='loading..'
   time:String='loading..'
   data: any;
+  stationCompareID:any;
   private downloadUrl: SafeUrl | undefined;
 
   constructor(private route:ActivatedRoute, private sanitizer: DomSanitizer, private securityService: SecurityService, private router: Router, private stationService: StationService, private downloadService: DownloadService) {
@@ -95,5 +96,10 @@ export class StationComponent implements OnInit {
         this.stationService.setGeolocationPlace(parseInt(this.id))
       }
     })
+  }
+
+  getStationCompare(place:string, date:string) {
+    this.data = this.stationService.getStationCompare(this.id, place, date);
+    console.log(this.data)
   }
 }
