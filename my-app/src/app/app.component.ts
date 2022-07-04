@@ -38,20 +38,7 @@ export class AppComponent {
     window.alert("you have been successfully logged out")
   }
 
-  // constructor(http: HttpClient) {
-  //   const path = 'https://api.github.com/search/repositories?q=angular';
-  //   this.repos = http.get<any>(path)
-  //     .pipe(
-  //       map(data => data.items)
-  //     );
-  //   this.repos.subscribe(next => {
-  //     localStorage[CACHE_KEY] = JSON.stringify(next);
-  //   });
-  //
-  //   this.repos = this.repos.pipe(
-  //     startWith(JSON.parse(localStorage[CACHE_KEY] || '[]'))
-  //   )
-  // }
+
   update: boolean = false;
   constructor(updates: SwUpdate , private route: Router, private securityService: SecurityService) {
     updates.available.subscribe(event =>{

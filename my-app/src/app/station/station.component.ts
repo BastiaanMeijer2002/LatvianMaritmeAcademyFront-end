@@ -36,19 +36,16 @@ export class StationComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.state = this.route.snapshot.params['state'];
     console.log(this.state)
+    console.log(this.state)
 
-    if (this.state == 'stored') {
-      let data = localStorage.getItem('stationdata')
-      if (data) {
-        this.data = JSON.parse(data)
-        this.country = localStorage.getItem('country') as string
-        this.place = localStorage.getItem('place') as string
-        console.log(this.data)
-      }
-    } else {
+
       this.getData();
-    }
+
+
+
   }
+
+
 
   downloadData(data:any){
     return this.downloadService.downloadJson(data);
@@ -65,6 +62,16 @@ export class StationComponent implements OnInit {
   }
 
   getData(){
+  if (this.state == 'stored') {
+    let data = localStorage.getItem('stationdata')
+    if (data) {
+      this.data = JSON.parse(data)
+      this.country = localStorage.getItem('country') as string
+      this.place = localStorage.getItem('place') as string
+      console.log(this.data)
+    }
+  } else {
+
     // this.stationService.stationdata$.subscribe(data => {
     //   if (data != undefined) {
     //     this.stationdata = data
@@ -80,7 +87,7 @@ export class StationComponent implements OnInit {
     //   }
     // })
     this.securityService.checkAuthStatus();
-    this.stationService.getData(this.id).subscribe((data:Stationdata) =>{
+    this.stationService.getData(this.id).subscribe((data: Stationdata) => {
       console.log(data)
       this.data = data;
       localStorage.setItem('stationdata', JSON.stringify(this.data))
@@ -96,6 +103,7 @@ export class StationComponent implements OnInit {
         this.stationService.setGeolocationPlace(parseInt(this.id))
       }
     })
+  }
   }
 
   getStationCompare(place:string, date:string) {
