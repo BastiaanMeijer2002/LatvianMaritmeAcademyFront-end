@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import Chart from 'chart.js/auto'
 
