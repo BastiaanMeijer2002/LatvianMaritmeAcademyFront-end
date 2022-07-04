@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import Chart from 'chart.js/auto'
 
@@ -13,6 +13,7 @@ import {Stationdata, StationdataSimple} from "../interfaces";
 export class MyChartComponent implements OnInit {
   id = ""
   state = "live";
+  @Input() wind_direction = 0
   stationdata?:Stationdata
   stationdataSet?:StationdataSimple[]
   labels:string[] = []
@@ -25,6 +26,9 @@ export class MyChartComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.state = this.route.snapshot.params['state'];
+
+    // @ts-ignore
+    document.getElementById('arrowfront').style.transform = `rotate(${this.wind_direction + 90}deg)`
 
     if (this.state == "stored") {
       this.getStoredData()

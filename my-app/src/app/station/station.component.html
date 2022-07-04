@@ -39,7 +39,9 @@
           </tbody>
         </table>
       </div>
-      <app-my-chart></app-my-chart>
+      <div *ngIf="state == 'live' || state == 'stored'">
+        <app-my-chart [wind_direction]="data['wind_direction']"></app-my-chart>
+      </div>
     </div>
     <aside>
       <div class="list-group">
