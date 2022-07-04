@@ -5,7 +5,7 @@ export interface Stationdata {
   time:String,
   temperature:String,
   wind_speed:Number,
-  wind_direction:Number,
+  wind_direction:number,
   rain:Number
 }
 
