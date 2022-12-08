@@ -1,3 +1,7 @@
+Prerequisites:
+  
+  Make sure you setup the LMA Backend first in order to be able to run this project!
+
 Setup frontend:
 
   Be sure angular cli is configured on your computer!
